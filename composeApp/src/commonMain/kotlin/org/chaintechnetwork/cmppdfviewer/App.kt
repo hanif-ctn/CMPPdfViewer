@@ -15,11 +15,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.hanif.cmppicker.MediaPicker
-import com.hanif.cmppicker.inappviewer.DocumentViewer
-import com.hanif.cmppicker.models.SharedDocument
-import com.hanif.cmppicker.rememberMediaPickerState
-import com.hanif.cmppicker.utils.MediaResult
+import multiplatform.network.cmpfilepicker.MediaPicker
+import multiplatform.network.cmpfilepicker.inappviewer.DocumentViewer
+import multiplatform.network.cmpfilepicker.models.SharedDocument
+import multiplatform.network.cmpfilepicker.rememberMediaPickerState
+import multiplatform.network.cmpfilepicker.utils.MediaResult
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable

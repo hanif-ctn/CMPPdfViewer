@@ -24,6 +24,8 @@ kotlin {
             isStatic = true
         }
     }
+
+    jvm()
     
     sourceSets {
         androidMain.dependencies {
@@ -40,7 +42,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(project(":CMPPdfViewer"))
-            implementation(project(":cmppicker"))
+            implementation("network.chaintech:cmpfilepicker:1.1.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

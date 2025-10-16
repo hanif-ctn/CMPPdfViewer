@@ -12,6 +12,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven { url = uri("https://jitpack.io") } // It's good practice to use uri() for URLs
     }
 }
 
@@ -25,10 +26,10 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+        maven { url = uri("https://jitpack.io") } // It's good practice to use uri() for URLs
     }
 }
 
 include(":composeApp")
 //include(":CMPPdfViewer1")
 include(":CMPPdfViewer")
-include(":cmppicker")
