@@ -73,13 +73,13 @@ kotlin {
             implementation(libs.accompanist.permissions)
             implementation(libs.androidx.media3.exoplayer)
             implementation(libs.androidx.media3.ui)
-            implementation("com.github.Victor2018:DocViewer:3.0.7")
+            implementation(libs.docviewer)
         }
 
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
-            implementation("org.apache.pdfbox:pdfbox:3.0.1")
+            implementation(libs.pdfbox)
         }
         iosMain.dependencies {
             implementation(compose.material3)

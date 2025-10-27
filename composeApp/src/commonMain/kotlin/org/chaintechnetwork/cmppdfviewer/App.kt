@@ -10,48 +10,32 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import multiplatform.network.cmpfilepicker.MediaPicker
-import multiplatform.network.cmpfilepicker.inappviewer.DocumentViewer
-import multiplatform.network.cmpfilepicker.models.SharedDocument
-import multiplatform.network.cmpfilepicker.rememberMediaPickerState
-import multiplatform.network.cmpfilepicker.utils.MediaResult
+import com.chaintechnetwork.cmppdfviewer.DocumentViewer
+import com.chaintechnetwork.cmppdfviewer.SharedDocument
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-
-        val pickerState = rememberMediaPickerState()
         var selectedDocument by remember { mutableStateOf<SharedDocument?>(null) }
+        var documentKey by remember { mutableIntStateOf(0) }
 
-        // Media Picker Component
-        MediaPicker(
-            state = pickerState,
-            onResult = { result ->
-                when (result) {
-                    is MediaResult.Document -> {
-                        selectedDocument = result.document
-                    }
-
-                    else -> {
-
-                    }
+        selectedDocument?.let { doc ->
+            // Force complete recreation of DocumentViewer
+            androidx.compose.runtime.key(documentKey) {
+                DocumentViewer(
+                    document = doc,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    selectedDocument = null
                 }
-            },
-            onPermissionDenied = { deniedPermission ->
-
-            }
-        )
-
-        selectedDocument?.let {
-            DocumentViewer(document = it, modifier = Modifier.fillMaxSize()) {
-
             }
         }
 
@@ -65,9 +49,21 @@ fun App() {
                 verticalArrangement = Arrangement.Center
             ) {
                 Button(onClick = {
-                    pickerState.pickDocument()
+                    //pickerState.pickDocument()
                 }) {
                     Text("Pick Document!")
+                }
+
+                Button(onClick = {
+                    documentKey++ // Increment first to force new instance
+                    selectedDocument = SharedDocument(
+                        name = "Adobe Sample PDF",
+                        mimeType = "application/pdf",
+                        data = null,
+                        url = "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf"
+                    )
+                }) {
+                    Text("Load from remote")
                 }
             }
         }

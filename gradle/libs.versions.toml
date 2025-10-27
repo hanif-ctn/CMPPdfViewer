@@ -1,6 +1,6 @@
 [versions]
 agp = "8.13.0"
-android-compileSdk = "35"
+android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activity = "1.10.1"
@@ -9,15 +9,19 @@ androidx-core = "1.16.0"
 androidx-espresso = "3.6.1"
 androidx-lifecycle = "2.9.1"
 androidx-testExt = "1.2.1"
+cmpfilepicker = "1.1.1"
 cmpImagePickNCrop = "1.1.2"
 composeHotReload = "1.0.0-beta04"
 composeMultiplatform = "1.8.2"
+docviewer = "3.0.7"
 junit = "4.13.2"
 kotlin = "2.2.0"
 kotlinx-coroutines = "1.10.2"
 accompanist-permissions = "0.32.0"
+krypto = "4.0.10"
 media3Ui = "1.8.0"
 kotlinStdlib = "2.2.0"
+pdfbox = "3.0.6"
 runner = "1.5.2"
 core = "1.5.0"
 junitVersion = "1.3.0"
@@ -27,6 +31,8 @@ mavenPublishVersion = "0.31.0"
 [libraries]
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3Ui" }
 androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3Ui" }
+cmpfilepicker = { module = "network.chaintech:cmpfilepicker", version.ref = "cmpfilepicker" }
+docviewer = { module = "com.github.Victor2018:DocViewer", version.ref = "docviewer" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
@@ -37,6 +43,8 @@ kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", versio
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+krypto = { module = "com.soywiz.korlibs.krypto:krypto", version.ref = "krypto" }
+pdfbox = { module = "org.apache.pdfbox:pdfbox", version.ref = "pdfbox" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

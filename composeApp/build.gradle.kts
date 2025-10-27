@@ -42,7 +42,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(project(":CMPPdfViewer"))
-            implementation("network.chaintech:cmpfilepicker:1.1.0")
+//            implementation("network.chaintech:cmpfilepicker:1.1.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
