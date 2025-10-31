@@ -3,7 +3,7 @@ package com.chaintechnetwork.cmppdfviewer
 data class SharedDocument(
     val name: String,
     val mimeType: String?,
-    val data: ByteArray?,
+    val data: ByteArray? = null,
     val url: String? = null,
     val size: Long = data?.size?.toLong() ?: 0L
 ) {

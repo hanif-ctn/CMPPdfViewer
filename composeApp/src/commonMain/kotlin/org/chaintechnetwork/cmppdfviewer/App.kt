@@ -18,6 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.chaintechnetwork.cmppdfviewer.DocumentViewer
 import com.chaintechnetwork.cmppdfviewer.SharedDocument
+import multiplatform.network.cmpfilepicker.MediaPicker
+import multiplatform.network.cmpfilepicker.rememberMediaPickerState
+import multiplatform.network.cmpfilepicker.utils.MediaResult
+import multiplatform.network.cmpfilepicker.utils.MimeTypes
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -26,16 +30,40 @@ fun App() {
     MaterialTheme {
         var selectedDocument by remember { mutableStateOf<SharedDocument?>(null) }
         var documentKey by remember { mutableIntStateOf(0) }
+        val pickerState = rememberMediaPickerState()
+
+        // Media Picker Component
+        MediaPicker(
+            state = pickerState,
+            onResult = { result ->
+                when (result) {
+                    is MediaResult.Document -> {
+                        result.document.apply {
+                            selectedDocument = SharedDocument(
+                                name = name,
+                                mimeType = mimeType,
+                                data = data,
+                                size = size
+                            )
+                        }
+                    }
+
+                    else -> {
+
+                    }
+                }
+            },
+            onPermissionDenied = { deniedPermission ->
+
+            }
+        )
 
         selectedDocument?.let { doc ->
-            // Force complete recreation of DocumentViewer
-            androidx.compose.runtime.key(documentKey) {
-                DocumentViewer(
-                    document = doc,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    selectedDocument = null
-                }
+            DocumentViewer(
+                document = doc,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                selectedDocument = null
             }
         }
 
@@ -49,17 +77,15 @@ fun App() {
                 verticalArrangement = Arrangement.Center
             ) {
                 Button(onClick = {
-                    //pickerState.pickDocument()
+                    pickerState.pickDocument(mimeTypes = listOf(MimeTypes.PDF))
                 }) {
                     Text("Pick Document!")
                 }
 
                 Button(onClick = {
-                    documentKey++ // Increment first to force new instance
                     selectedDocument = SharedDocument(
                         name = "Adobe Sample PDF",
                         mimeType = "application/pdf",
-                        data = null,
                         url = "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf"
                     )
                 }) {
